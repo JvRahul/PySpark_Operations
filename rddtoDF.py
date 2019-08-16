@@ -1,4 +1,5 @@
-rdd1 = sc.textFile('dbfs:/FileStore/tables/2010_12_01-ec65d.csv')rdd2_split = rdd1.map(lambda l: l.split(","))
+rdd1 = sc.textFile('dbfs:/FileStore/tables/2010_12_01-ec65d.csv')
+rdd2_split = rdd1.map(lambda l: l.split(","))
 
 #type(rdd1)
 rdd1.take(10)
