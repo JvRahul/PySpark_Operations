@@ -1,0 +1,24 @@
+Problem Statement:
+
+How many calls that were tagged 'false call / false alarm' were treated as highest priority and how many were treated as any other priority?
+
+Steps:
+  1. Read the dataset in dataFrames (Remove duplicates (incident numbers) and null rows)
+  2. From df_fire_incidents filter all records where 'Primary situation' column has 'False' as a substring
+  3. From df_fire_calls filter all records where 'OrigPriority' is 3.
+  4. Join the resultant columns and get a count
+  
+
+fire_incidents = '/databricks-datasets/learning-spark-v2/sf-fire/sf-fire-incidents.csv"
+fire_calls = '/databricks-datasets/learning-spark-v2/sf-fire/sf-fire-calls.csv"
+
+import pyspark.sql.functions as f
+df_fire_incidents = spark.read\
+  .format("csv")\
+  .option("header", True)\
+  .option("inferSchema, True)\
+  .load(fire_incidents)\
+  .filter(f.col('Incident Number').isNotNull())\
+  .dropDuplicates(subset = ['Incident Number']
+  
+df_fire_incidents.cache()
